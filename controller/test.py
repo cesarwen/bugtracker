@@ -1,7 +1,3 @@
-import sys
-sys.path.append('../controller')
-sys.path.append('../view')
-
 import postgreSQL
 
 if __name__ == '__main__':

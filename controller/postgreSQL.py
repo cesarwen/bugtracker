@@ -1,6 +1,7 @@
 #!/usr/bin/python
+import sys
 import psycopg2
-from config import config
+from config_ini import config
 
 class database:
     def __init__(self):
@@ -20,7 +21,7 @@ class database:
             conn.close()
             print('Database connection closed.')
 
-    def select(self, cmd):
+    def select_all(self, cmd):
         """ Connect to the PostgreSQL database server """
         conn = None
         try:
@@ -31,10 +32,9 @@ class database:
             cur = conn.cursor()
             
         # execute a statement
-            print('PostgreSQL database version:')
             cur.execute(cmd)
-
-            # display the PostgreSQL database server version
+        
+        # gets all query responses
             rows = cur.fetchall()
 
         # close the communication with the PostgreSQL
@@ -46,7 +46,7 @@ class database:
             self.__close__(conn)
             return(rows)
 
-    def insert(self, cmd):
+    def edit(self, cmd):
         """ Connect to the PostgreSQL database server """
         conn = None
         try:
@@ -57,7 +57,6 @@ class database:
             cur = conn.cursor()
             
         # execute a statement
-            print('PostgreSQL database version:')
             cur.execute(cmd)
 
             # commit the changes to the database
